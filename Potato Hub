@@ -81,8 +81,28 @@ local JumpSlider = Tab:CreateSlider({
 	end,
 })
 
+local GodMode = Tab:CreateToggle({
+	Name = "Godmode (You can't take damage, but you can die to one shot things)",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+		local player = game.Players.LocalPlayer
+		local char = player.Character or player.CharacterAdded:Wait()
+		local humanoid = char:WaitForChild("Humanoid")
+
+		if Value then
+			humanoid.MaxHealth = math.huge
+			humanoid.Health = math.huge
+		else
+			humanoid.MaxHealth = 100
+			humanoid.Health = humanoid.MaxHealth
+		end
+	end,
+})
+
+
 -- No Clip
-local Toggle = Tab:CreateToggle({
+local NoClip = Tab:CreateToggle({
 	Name = "No Clip",
 	CurrentValue = false,
 	Flag = "Toggle1",
