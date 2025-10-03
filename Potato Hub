@@ -1,0 +1,227 @@
+-- Potato Hub
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+	Name = "Potato Hub",
+	Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+	LoadingTitle = "Loading Potato Scripts",
+	LoadingSubtitle = "By Potato Devs",
+	ShowText = "Potato Hub", -- for mobile users to unhide rayfield, change if you'd like
+	Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+	ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+	DisableRayfieldPrompts = false,
+	DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = nil, -- Create a custom folder for your hub/game
+		FileName = "Potato Hub"
+	},
+
+	Discord = {
+		Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+		Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+		RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+	},
+
+	KeySystem = false, -- Set this to true to use our key system
+	KeySettings = {
+		Title = "Untitled",
+		Subtitle = "Key System",
+		Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+		FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+		SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+		GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+		Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+	}
+})
+
+local Tab = Window:CreateTab("Player Scripts")
+
+-- Fly Loader Button
+local FlyButton = Tab:CreateButton({
+	Name = "Load Fly Script",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+-- The function that takes place when the button is pressed
+end,
+})
+
+-- Speed Slider
+local SpeedSlider = Tab:CreateSlider({
+	Name = "Walk Speed",
+	Range = {0, 100},
+	Increment = 1, 
+	Suffix = "Speed",
+	CurrentValue = 16, 
+	Flag = "Slider1",
+	Callback = function(Value)
+		local player = game.Players.LocalPlayer
+		if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+			player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = Value
+		end
+	end,
+})
+
+local JumpSlider = Tab:CreateSlider({
+	Name = "Jump Power",
+	Range = {0, 1000},
+	Increment = 1, 
+	Suffix = "Power",
+	CurrentValue = 50, 
+	Flag = "Slider1",
+	Callback = function(Value)
+		local player = game.Players.LocalPlayer
+		if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+			player.Character:FindFirstChildOfClass("Humanoid").JumpPower = Value
+		end
+	end,
+})
+
+-- No Clip
+local Toggle = Tab:CreateToggle({
+	Name = "No Clip",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = (function()
+		local Players = game:GetService("Players")
+		local RunService = game:GetService("RunService")
+		local Plr = Players.LocalPlayer
+		local SteppedConnection = nil
+		local Clipon = false
+
+		return function(Value)
+			Clipon = Value
+
+			if Clipon then
+				if SteppedConnection then
+					SteppedConnection:Disconnect()
+					SteppedConnection = nil
+				end
+
+				SteppedConnection = RunService.Stepped:Connect(function()
+					for _, b in pairs(workspace:GetChildren()) do
+						if b.Name == Plr.Name then
+							for _, v in pairs(b:GetChildren()) do
+								if v:IsA("BasePart") then
+									v.CanCollide = false
+								end
+							end
+						end
+					end
+				end)
+
+			else
+				if SteppedConnection then
+					SteppedConnection:Disconnect()
+					SteppedConnection = nil
+				end
+			end
+		end
+	end)(),
+})
+
+local Tab2 = Window:CreateTab("Troll")
+
+local FlingButton = Tab2:CreateButton({
+	Name = "Load Fling GUI",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		loadstring((function(t)local s=''for i=1,#t,2 do s=s..string.char(t[i]//t[i+1])end return s end)({216,2,333,3,485,5,700,7,1265,11,1508,13,1938,17,1995,19,2530,23,2987,29,80,2,309,3,485,5,763,7,1111,11,754,13,1224,17,2204,19,2668,23,3248,29,142,2,303,3,580,5,280,7,374,11,1352,13,1972,17,2204,19,2576,23,3335,29,116,2,141,3,235,5,721,7,1188,11,1443,13,1972,17,874,19,2415,23,3219,29,94,2,345,3,550,5,735,7,1232,11,1456,13,1717,17,2204,19,2645,23,1363,29,208,2,168,3,270,5,721,7,1210,11,1495,13,1700,17,1957,19,2691,23,2900,29,94,2,342,3,485,5,833,7,517,11,910,13,1836,17,1995,19,2530,23,2987,29,142,2,351,3,525,5,322,7,1188,11,1521,13,1649,17,646,19,943,23,1189,29,80,2,123,3}))()
+	end,
+})
+
+local Tab3 = Window:CreateTab("Player Teleport")
+
+local Dropdown = Tab3:CreateDropdown({
+	Name = "Dropdown Example",
+	Options = {"Option 1","Option 2"},
+	CurrentOption = {"Option 1"},
+	MultipleOptions = false,
+	Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Options)
+		-- The function that takes place when the selected option is changed
+		-- The variable (Options) is a table of strings for the current selected options
+	end,
+})
+
+local Tab5 = Window:CreateTab("Server")
+
+local PsGUI = Tab5:CreateButton({
+	Name = "Load Free Private Server GUI",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FREE-PRIVATE-SERVER-GUI-ANY-GAME-55939"))()
+	end,
+})
+
+local RejoinButton = Tab5:CreateButton({
+	Name = "Rejoin",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		local TeleportService = game:GetService("TeleportService")
+		local Players = game:GetService("Players")
+
+		local player = Players.LocalPlayer
+		local placeId = game.PlaceId
+		local jobId = game.JobId  -- nykyisen serverin ID
+
+		TeleportService:TeleportToPlaceInstance(placeId, jobId, player)
+
+	end,
+})
+
+local ServerHopButton = Tab5:CreateButton({
+	Name = "Server Hop",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		local HttpService = game:GetService("HttpService")
+		local TeleportService = game:GetService("TeleportService")
+		local Players = game:GetService("Players")
+
+		local player = Players.LocalPlayer
+		local placeId = game.PlaceId
+		local currentJobId = game.JobId
+
+		local function getServerList(cursor)
+			local url = string.format("https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Asc&limit=100", placeId)
+			if cursor then
+				url = url .. "&cursor=" .. cursor
+			end
+			local response = game:HttpGet(url)
+			return HttpService:JSONDecode(response)
+		end
+
+		local function getRandomServer()
+			local data = getServerList()
+			if not data or not data.data then return nil end
+
+			local possibleServers = {}
+			for _, server in ipairs(data.data) do
+				if server.id ~= currentJobId and server.playing < server.maxPlayers then
+					table.insert(possibleServers, server.id)
+				end
+			end
+
+			if #possibleServers > 0 then
+				return possibleServers[math.random(1, #possibleServers)]
+			else
+				return nil
+			end
+		end
+		
+		local function serverHop()
+			local serverId = getRandomServer()
+			if serverId then
+				TeleportService:TeleportToPlaceInstance(placeId, serverId, player)
+			else
+				TeleportService:Teleport(placeId, player)
+			end
+		end
+		
+		serverHop()
+	end,
+})
