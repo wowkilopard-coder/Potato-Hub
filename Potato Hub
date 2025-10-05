@@ -159,6 +159,24 @@ local RemoteGUI = Tab2:CreateButton({
 	end,
 })
 
+local UniversalAimbot = Tab2:CreateButton({
+	Name = "Load Universal Aimbot",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/wowkilopard-coder/Potato-Hub-3.0/refs/heads/main/Universal%20Aimbot'))()
+	end,
+})
+
+local NoCooldown = Tab2:CreateButton({
+	Name = "No Cooldown",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		g = hookfunction(wait, function(seconds)
+			return g(0)
+		end)
+	end,
+})
+
 
 local Tab3 = Window:CreateTab("Teleport")
 
