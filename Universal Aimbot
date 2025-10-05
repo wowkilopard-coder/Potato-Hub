@@ -1,0 +1,167 @@
+-- Op Rivals Script (KRNL-yhteensopiva)
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+-- Koot
+local FRAME_W, FRAME_H = 325, 50
+-- Luo GUI ja parentoi oikein (CoreGui / PlayerGui)
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "MovePlayersGUI"
+ScreenGui.ResetOnSpawn = false
+if syn and syn.protect_gui then
+    syn.protect_gui(ScreenGui)
+    ScreenGui.Parent = game:GetService("CoreGui")
+else
+    local pg = LocalPlayer:FindFirstChildOfClass("PlayerGui")
+    ScreenGui.Parent = pg or game:GetService("CoreGui")
+end
+-- Pääframe
+local Frame = Instance.new("Frame")
+Frame.Parent = ScreenGui
+Frame.Size = UDim2.new(0, FRAME_W, 0, FRAME_H)
+Frame.Position = UDim2.new(0.5, -FRAME_W/2, 0, 10)
+Frame.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Frame.BorderSizePixel = 0
+Frame.ZIndex = 2
+Instance.new("UICorner", Frame).CornerRadius = UDim.new(0,8)
+-- Drag button
+local DragButton = Instance.new("TextButton")
+DragButton.Parent = Frame
+DragButton.Size = UDim2.new(0,50,0,50)
+DragButton.Position = UDim2.new(0,0,0,0)
+DragButton.Text = "☰"
+DragButton.Font = Enum.Font.SourceSansBold
+DragButton.TextSize = 22
+DragButton.TextColor3 = Color3.fromRGB(255,255,255)
+DragButton.BackgroundColor3 = Color3.fromRGB(90,90,90)
+DragButton.BorderSizePixel = 0
+DragButton.ZIndex = 3
+Instance.new("UICorner", DragButton).CornerRadius = UDim.new(0,8)
+-- Toggle button
+local ToggleButton = Instance.new("TextButton")
+ToggleButton.Parent = Frame
+ToggleButton.Size = UDim2.new(0,200,0,50)
+ToggleButton.Position = UDim2.new(0,50,0,0)
+ToggleButton.Text = "Move Players OFF"
+ToggleButton.Font = Enum.Font.SourceSansBold
+ToggleButton.TextSize = 18
+ToggleButton.TextColor3 = Color3.fromRGB(255,255,255)
+ToggleButton.BackgroundColor3 = Color3.fromRGB(170,50,50)
+ToggleButton.BorderSizePixel = 0
+ToggleButton.ZIndex = 3
+Instance.new("UICorner", ToggleButton).CornerRadius = UDim.new(0,8)
+-- Etäisyys
+local distance = 6
+local minDist, maxDist = 1, 50
+-- + nappi
+local PlusButton = Instance.new("TextButton")
+PlusButton.Parent = Frame
+PlusButton.Size = UDim2.new(0,25,0,25)
+PlusButton.Position = UDim2.new(0,250,0,0)
+PlusButton.Text = "+"
+PlusButton.Font = Enum.Font.SourceSansBold
+PlusButton.TextSize = 20
+PlusButton.TextColor3 = Color3.fromRGB(255,255,255)
+PlusButton.BackgroundColor3 = Color3.fromRGB(60,120,60)
+PlusButton.BorderSizePixel = 0
+PlusButton.ZIndex = 3
+Instance.new("UICorner", PlusButton).CornerRadius = UDim.new(0,6)
+-- - nappi
+local MinusButton = Instance.new("TextButton")
+MinusButton.Parent = Frame
+MinusButton.Size = UDim2.new(0,25,0,25)
+MinusButton.Position = UDim2.new(0,250,0,25)
+MinusButton.Text = "-"
+MinusButton.Font = Enum.Font.SourceSansBold
+MinusButton.TextSize = 20
+MinusButton.TextColor3 = Color3.fromRGB(255,255,255)
+MinusButton.BackgroundColor3 = Color3.fromRGB(120,60,60)
+MinusButton.BorderSizePixel = 0
+MinusButton.ZIndex = 3
+Instance.new("UICorner", MinusButton).CornerRadius = UDim.new(0,6)
+-- Näyttö
+local DistDisplay = Instance.new("TextLabel")
+DistDisplay.Parent = Frame
+DistDisplay.Size = UDim2.new(0,50,0,50)
+DistDisplay.Position = UDim2.new(0,275,0,0)
+DistDisplay.Text = tostring(distance)
+DistDisplay.Font = Enum.Font.SourceSansBold
+DistDisplay.TextSize = 20
+DistDisplay.TextColor3 = Color3.fromRGB(255,255,255)
+DistDisplay.BackgroundColor3 = Color3.fromRGB(70,70,70)
+DistDisplay.BorderSizePixel = 0
+DistDisplay.ZIndex = 3
+Instance.new("UICorner", DistDisplay).CornerRadius = UDim.new(0,8)
+-- Päivitä näyttö
+local function updateDisplay()
+    DistDisplay.Text = tostring(distance)
+end
+PlusButton.MouseButton1Click:Connect(function()
+    distance = math.clamp(distance + 1, minDist, maxDist)
+    updateDisplay()
+end)
+MinusButton.MouseButton1Click:Connect(function()
+    distance = math.clamp(distance - 1, minDist, maxDist)
+    updateDisplay()
+end)
+-- Pelaajien siirto
+local moving = false
+local loopConnection
+local function moveOthers()
+    if not LocalPlayer.Character or not LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then return end
+    local hrp = LocalPlayer.Character.HumanoidRootPart
+    for _,plr in pairs(Players:GetPlayers()) do
+        if plr ~= LocalPlayer and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            plr.Character.HumanoidRootPart.CFrame = hrp.CFrame * CFrame.new(0,0,-distance)
+        end
+    end
+end
+ToggleButton.MouseButton1Click:Connect(function()
+    moving = not moving
+    if moving then
+        ToggleButton.Text = "Move Players ON"
+        ToggleButton.BackgroundColor3 = Color3.fromRGB(50,170,50)
+        if loopConnection then loopConnection:Disconnect() end
+        loopConnection = RunService.Heartbeat:Connect(moveOthers)
+    else
+        ToggleButton.Text = "Move Players OFF"
+        ToggleButton.BackgroundColor3 = Color3.fromRGB(170,50,50)
+        if loopConnection then loopConnection:Disconnect() end
+    end
+end)
+-- Dragging
+local dragging, dragInput, dragStart, startPos
+local function clampPosition(x, y)
+    local vs = workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize or Vector2.new(1920,1080)
+    return math.clamp(x, 0, vs.X - FRAME_W), math.clamp(y, 0, vs.Y - FRAME_H)
+end
+local function onInputChanged(input)
+    if input == dragInput and dragging then
+        local delta = input.Position - dragStart
+        local newX, newY = clampPosition(startPos.X + delta.X, startPos.Y + delta.Y)
+        Frame.Position = UDim2.new(0,newX,0,newY)
+    end
+end
+DragButton.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 
+    or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragInput = input
+        dragStart = input.Position
+        startPos = Frame.AbsolutePosition
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+                dragInput = nil
+            end
+        end)
+    end
+end)
+DragButton.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement 
+    or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+UserInputService.InputChanged:Connect(onInputChanged)
