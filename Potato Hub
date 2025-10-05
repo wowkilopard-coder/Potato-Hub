@@ -39,7 +39,7 @@ local Window = Rayfield:CreateWindow({
 	}
 })
 
-local Tab = Window:CreateTab("Player Scripts")
+local Tab = Window:CreateTab("Player")
 
 -- Fly Loader Button
 local FlyButton = Tab:CreateButton({
@@ -49,6 +49,18 @@ local FlyButton = Tab:CreateButton({
 -- The function that takes place when the button is pressed
 end,
 })
+
+local GodMode = Tab:CreateButton({
+	Name = "Load God Mode script",
+	Callback = function()
+	--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+		loadstring(game:HttpGet("https://freenote.biz/raw/Fhpx5r5A8M"))()	
+		-- The function that takes place when the button is pressed
+	end,
+})
+
 
 -- Speed Slider
 local SpeedSlider = Tab:CreateSlider({
@@ -80,26 +92,6 @@ local JumpSlider = Tab:CreateSlider({
 		end
 	end,
 })
-
-local GodMode = Tab:CreateToggle({
-	Name = "Godmode (You can't take damage, but you can die to one shot things)",
-	CurrentValue = false,
-	Flag = "Toggle1",
-	Callback = function(Value)
-		local player = game.Players.LocalPlayer
-		local char = player.Character or player.CharacterAdded:Wait()
-		local humanoid = char:WaitForChild("Humanoid")
-
-		if Value then
-			humanoid.MaxHealth = math.huge
-			humanoid.Health = math.huge
-		else
-			humanoid.MaxHealth = 100
-			humanoid.Health = humanoid.MaxHealth
-		end
-	end,
-})
-
 
 -- No Clip
 local NoClip = Tab:CreateToggle({
@@ -144,7 +136,15 @@ local NoClip = Tab:CreateToggle({
 	end)(),
 })
 
-local Tab2 = Window:CreateTab("Troll")
+local Tab2 = Window:CreateTab("Universal Scripts")
+
+local InfiniteYield = Tab2:CreateButton({
+	Name = "Load Infinite Yield",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+	end,
+})
 
 local FlingButton = Tab2:CreateButton({
 	Name = "Load Fling GUI",
@@ -154,7 +154,16 @@ local FlingButton = Tab2:CreateButton({
 	end,
 })
 
-local Tab3 = Window:CreateTab("Player Teleport")
+local RemoteGUI = Tab2:CreateButton({
+	Name = "Load RemoteGUI",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/wowkilopard-coder/Potato-Hub-3.0/refs/heads/main/RemoteGUI'))()
+	end,
+})
+
+
+local Tab3 = Window:CreateTab("Teleport")
 
 local Dropdown = Tab3:CreateDropdown({
 	Name = "Dropdown Example",
