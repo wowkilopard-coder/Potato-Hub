@@ -53,10 +53,7 @@ end,
 local GodMode = Tab:CreateButton({
 	Name = "Load God Mode script",
 	Callback = function()
-	--[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
-		loadstring(game:HttpGet("https://freenote.biz/raw/Fhpx5r5A8M"))()	
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Rawbr10/Roblox-Scripts/refs/heads/main/God%20Mode%20Script%20Universal"))()
 		-- The function that takes place when the button is pressed
 	end,
 })
@@ -65,7 +62,7 @@ local GodMode = Tab:CreateButton({
 -- Speed Slider
 local SpeedSlider = Tab:CreateSlider({
 	Name = "Walk Speed",
-	Range = {0, 100},
+	Range = {0, 500},
 	Increment = 1, 
 	Suffix = "Speed",
 	CurrentValue = 16, 
@@ -80,7 +77,7 @@ local SpeedSlider = Tab:CreateSlider({
 
 local JumpSlider = Tab:CreateSlider({
 	Name = "Jump Power",
-	Range = {0, 1000},
+	Range = {0, 500},
 	Increment = 1, 
 	Suffix = "Power",
 	CurrentValue = 50, 
