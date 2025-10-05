@@ -1,0 +1,341 @@
+local player = game.Players.LocalPlayer
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- === MAIN FRAME ===
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 500, 0, 220)
+Frame.Position = UDim2.new(0.5, -250, 0.5, -110)
+Frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+Frame.Parent = ScreenGui
+
+local UICorner = Instance.new("UICorner", Frame)
+UICorner.CornerRadius = UDim.new(0, 12)
+
+-- Title
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, -10, 0, 28)
+Title.Position = UDim2.new(0, 5, 0, 5)
+Title.BackgroundTransparency = 1
+Title.Text = "Remote Tool"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Font = Enum.Font.SourceSansBold
+Title.TextSize = 20
+Title.Parent = Frame
+
+-- === VASEN SCROLL ===
+local Scroll = Instance.new("ScrollingFrame")
+Scroll.Size = UDim2.new(0.5, -15, 1, -70)
+Scroll.Position = UDim2.new(0, 5, 0, 40)
+Scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+Scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+Scroll.ScrollBarThickness = 6
+Scroll.BackgroundTransparency = 1
+Scroll.Parent = Frame
+
+local Layout = Instance.new("UIListLayout")
+Layout.Padding = UDim.new(0, 6)
+Layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+Layout.SortOrder = Enum.SortOrder.LayoutOrder
+Layout.Parent = Scroll
+
+-- === OIKEA SCROLL ===
+local RemotesFrame = Instance.new("ScrollingFrame")
+RemotesFrame.Size = UDim2.new(0.5, -15, 1, -70)
+RemotesFrame.Position = UDim2.new(0.5, 10, 0, 40)
+RemotesFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+RemotesFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+RemotesFrame.ScrollBarThickness = 6
+RemotesFrame.BackgroundTransparency = 1
+RemotesFrame.Parent = Frame
+
+local RLayout = Instance.new("UIListLayout")
+RLayout.Padding = UDim.new(0, 4)
+RLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+RLayout.SortOrder = Enum.SortOrder.LayoutOrder
+RLayout.Parent = RemotesFrame
+
+-- Otsikko
+local RemotesTitle = Instance.new("TextLabel")
+RemotesTitle.Size = UDim2.new(0.9, 0, 0, 22)
+RemotesTitle.BackgroundTransparency = 1
+RemotesTitle.Text = "Remotes:"
+RemotesTitle.TextColor3 = Color3.fromRGB(255, 255, 0)
+RemotesTitle.Font = Enum.Font.SourceSansBold
+RemotesTitle.TextSize = 18
+RemotesTitle.LayoutOrder = 0
+RemotesTitle.Parent = RemotesFrame
+
+-- === NAPIT & INPUTIT ===
+local ResearchBtn = Instance.new("TextButton")
+ResearchBtn.Size = UDim2.new(0.9, 0, 0, 28)
+ResearchBtn.Text = "Research Remotes"
+ResearchBtn.LayoutOrder = 0
+ResearchBtn.Parent = Scroll
+
+local Status = Instance.new("TextLabel")
+Status.Size = UDim2.new(0.9, 0, 0, 28)
+Status.BackgroundTransparency = 1
+Status.Text = "Status: None"
+Status.TextColor3 = Color3.fromRGB(255, 255, 255)
+Status.LayoutOrder = 1
+Status.Parent = Scroll
+
+local RemoteBox = Instance.new("TextBox")
+RemoteBox.Size = UDim2.new(0.9, 0, 0, 28)
+RemoteBox.PlaceholderText = "Enter RemoteEvent name"
+RemoteBox.Text = ""
+RemoteBox.LayoutOrder = 2
+RemoteBox.Parent = Scroll
+
+local SearchBtn = Instance.new("TextButton")
+SearchBtn.Size = UDim2.new(0.9, 0, 0, 28)
+SearchBtn.Text = "Search Remote Event"
+SearchBtn.LayoutOrder = 3
+SearchBtn.Parent = Scroll
+
+local FireBtn = Instance.new("TextButton")
+FireBtn.Size = UDim2.new(0.9, 0, 0, 28)
+FireBtn.Text = "Fire Event"
+FireBtn.LayoutOrder = 4
+FireBtn.Parent = Scroll
+
+local SpamBtn = Instance.new("TextButton")
+SpamBtn.Size = UDim2.new(0.9, 0, 0, 28)
+SpamBtn.Text = "Loop: OFF"
+SpamBtn.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+SpamBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+SpamBtn.LayoutOrder = 5
+SpamBtn.Parent = Scroll
+
+local CooldownBox = Instance.new("TextBox")
+CooldownBox.Size = UDim2.new(0.9, 0, 0, 28)
+CooldownBox.PlaceholderText = "Loop cooldown (seconds, default 0.2)"
+CooldownBox.Text = "0.2"
+CooldownBox.LayoutOrder = 6
+CooldownBox.Parent = Scroll
+
+local ArgsBox = Instance.new("TextBox")
+ArgsBox.Size = UDim2.new(0.9, 0, 0, 28)
+ArgsBox.PlaceholderText = 'Args (e.g. 456, "hello", true)'
+ArgsBox.Text = ""
+ArgsBox.LayoutOrder = 7
+ArgsBox.Parent = Scroll
+
+local FireAllBtn = Instance.new("TextButton")
+FireAllBtn.Size = UDim2.new(0.6, 0, 0, 30)
+FireAllBtn.Position = UDim2.new(0.2, 0, 1, -35)
+FireAllBtn.Text = "🔥 Fire All Events"
+FireAllBtn.BackgroundColor3 = Color3.fromRGB(100, 100, 200)
+FireAllBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+FireAllBtn.Font = Enum.Font.SourceSansBold
+FireAllBtn.TextSize = 18
+FireAllBtn.Parent = Frame
+
+-- === HIDE/SHOW TOGGLE ===
+local ToggleFrame = Instance.new("Frame")
+ToggleFrame.Size = UDim2.new(0, 140, 0, 32)
+ToggleFrame.Position = UDim2.new(0, 10, 0, 10)
+ToggleFrame.BackgroundTransparency = 1
+ToggleFrame.Parent = ScreenGui
+
+local HideBtn = Instance.new("TextButton")
+HideBtn.Size = UDim2.new(0.75, 0, 1, 0)
+HideBtn.Text = "Hide GUI"
+HideBtn.BackgroundColor3 = Color3.fromRGB(120, 0, 0)
+HideBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+HideBtn.Font = Enum.Font.SourceSansBold
+HideBtn.TextSize = 16
+HideBtn.Parent = ToggleFrame
+
+local DragBtn = Instance.new("TextButton")
+DragBtn.Size = UDim2.new(0.25, 0, 1, 0)
+DragBtn.Position = UDim2.new(0.75, 0, 0, 0)
+DragBtn.Text = "☰"
+DragBtn.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+DragBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+DragBtn.Parent = ToggleFrame
+
+-- === SCRIPT LOGIC ===
+local remote = nil
+local spamming = false
+
+-- Find remote
+local function findRemote(name)
+	for _, obj in ipairs(game:GetDescendants()) do
+		if obj:IsA("RemoteEvent") and obj.Name == name then
+			return obj
+		end
+	end
+	return nil
+end
+
+-- List remotes
+local function listRemotes()
+	for _, child in ipairs(RemotesFrame:GetChildren()) do
+		if child:IsA("TextButton") and child ~= RemotesTitle then
+			child:Destroy()
+		end
+	end
+	for _, obj in ipairs(game:GetDescendants()) do
+		if obj:IsA("RemoteEvent") then
+			local btn = Instance.new("TextButton")
+			btn.Size = UDim2.new(0.9, 0, 0, 24)
+			btn.Text = obj.Name
+			btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+			btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+			btn.Parent = RemotesFrame
+			btn.MouseButton1Click:Connect(function()
+				RemoteBox.Text = obj.Name
+				remote = obj
+				Status.Text = "Status: Remote selected"
+			end)
+		end
+	end
+end
+
+-- Parse Args
+local function parseArgs()
+	local text = ArgsBox.Text
+	if text == "" then return {} end
+	local args = {}
+	for token in string.gmatch(text, "[^,]+") do
+		token = token:gsub("^%s*(.-)%s*$", "%1") -- trim
+		if tonumber(token) then
+			table.insert(args, tonumber(token))
+		elseif token == "true" then
+			table.insert(args, true)
+		elseif token == "false" then
+			table.insert(args, false)
+		else
+			token = token:gsub("^['\"](.-)['\"]$", "%1") -- poista lainausmerkit
+			table.insert(args, token)
+		end
+	end
+	return args
+end
+
+local function getCooldown()
+	local n = tonumber(CooldownBox.Text)
+	if n and n > 0 then return n end
+	return 0.2
+end
+
+-- Napit
+ResearchBtn.MouseButton1Click:Connect(function()
+	listRemotes()
+	Status.Text = "Status: Remotes refreshed"
+end)
+
+SearchBtn.MouseButton1Click:Connect(function()
+	remote = findRemote(RemoteBox.Text)
+	if remote then
+		Status.Text = "Status: Remote found!"
+	else
+		Status.Text = "Status: Remote not found."
+	end
+end)
+
+FireBtn.MouseButton1Click:Connect(function()
+	if remote then
+		local args = parseArgs()
+		pcall(function()
+			remote:FireServer(table.unpack(args))
+		end)
+		Status.Text = "Status: Fired remote"
+	else
+		Status.Text = "Status: No remote"
+	end
+end)
+
+SpamBtn.MouseButton1Click:Connect(function()
+	if spamming then
+		spamming = false
+		SpamBtn.Text = "Loop: OFF"
+		SpamBtn.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+	else
+		if remote then
+			spamming = true
+			SpamBtn.Text = "Loop: ON"
+			SpamBtn.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+			task.spawn(function()
+				while spamming do
+					local args = parseArgs()
+					pcall(function()
+						remote:FireServer(table.unpack(args))
+					end)
+					task.wait(getCooldown())
+				end
+			end)
+		else
+			Status.Text = "Status: No remote"
+		end
+	end
+end)
+
+FireAllBtn.MouseButton1Click:Connect(function()
+	local args = parseArgs()
+	local count = 0
+	for _, obj in ipairs(game:GetDescendants()) do
+		if obj:IsA("RemoteEvent") then
+			count += 1
+			task.spawn(function()
+				pcall(function()
+					obj:FireServer(table.unpack(args))
+				end)
+			end)
+		end
+	end
+	Status.Text = "Status: Fired " .. count .. " events (parallel)"
+end)
+
+-- Hide/Show
+HideBtn.MouseButton1Click:Connect(function()
+	if Frame.Visible then
+		Frame.Visible = false
+		HideBtn.Text = "Show GUI"
+		HideBtn.BackgroundColor3 = Color3.fromRGB(0, 100, 0)
+	else
+		Frame.Visible = true
+		HideBtn.Text = "Hide GUI"
+		HideBtn.BackgroundColor3 = Color3.fromRGB(120, 0, 0)
+	end
+end)
+
+-- Drag
+local UserInputService = game:GetService("UserInputService")
+local dragging = false
+local dragStart
+local startPos
+
+local function update(input)
+	local delta = input.Position - dragStart
+	ToggleFrame.Position = UDim2.new(
+		startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y
+	)
+end
+
+DragBtn.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = ToggleFrame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+		update(input)
+	end
+end)
+
+-- Startup
+listRemotes()
