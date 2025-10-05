@@ -180,7 +180,12 @@ local NoCooldownGun = Tab2:CreateButton({
 local NoCooldownProx = Tab2:CreateButton({
 	Name = "No Cooldown (ProximityPrompt)",
 	Callback = function()
-		for _,p in pairs(game:GetDescendants())do if p:IsA"ProximityPrompt"then p.Cooldown=0 end end
+		for _, d in ipairs(game:GetDescendants()) do
+			if d:IsA("ProximityPrompt") then
+				d:SetAttribute("Cooldown", 0)
+				d.Cooldown = 0
+			end
+		end
 	end,
 })
 
