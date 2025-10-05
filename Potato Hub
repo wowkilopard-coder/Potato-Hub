@@ -180,27 +180,21 @@ local NoCooldownGun = Tab2:CreateButton({
 local NoCooldownProx = Tab2:CreateButton({
 	Name = "No Cooldown (ProximityPrompt)",
 	Callback = function()
-		local function removeCooldown(prompt)
-			if prompt and prompt:IsA("ProximityPrompt") then
-				pcall(function()
-					prompt.CooldownTime = 0
-					if prompt.HoldDuration then
-						prompt.HoldDuration = 0
-					end
-				end)
+		local function SetupProximityPrompt(prompt)
+			prompt.HoldDuration = 0
+		end
+
+		workspace.DescendantAdded:Connect(function(descendant)
+			if descendant:IsA("ProximityPrompt") then
+				SetupProximityPrompt(descendant)
+			end
+		end)
+
+		for _, prompt in ipairs(workspace:GetDescendants()) do
+			if prompt:IsA("ProximityPrompt") then
+				SetupProximityPrompt(prompt)
 			end
 		end
-
-		for _, inst in ipairs(game:GetDescendants()) do
-			removeCooldown(inst)
-		end
-
-		game.DescendantAdded:Connect(function(desc)
-			task.spawn(function()
-				wait(0.01)
-				removeCooldown(desc)
-			end)
-		end)
 	end,
 })
 
