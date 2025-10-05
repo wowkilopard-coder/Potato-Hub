@@ -167,7 +167,7 @@ local UniversalAimbot = Tab2:CreateButton({
 	end,
 })
 
-local NoCooldown = Tab2:CreateButton({
+local NoCooldownGun = Tab2:CreateButton({
 	Name = "No Cooldown (Guns/Tools)",
 	Callback = function()
 		-- The function that takes place when the button is pressed
@@ -177,7 +177,7 @@ local NoCooldown = Tab2:CreateButton({
 	end,
 })
 
-local NoCooldown = Tab2:CreateButton({
+local NoCooldownProx = Tab2:CreateButton({
 	Name = "No Cooldown (ProximityPrompt)",
 	Callback = function()
 		for _,p in pairs(game:GetDescendants())do if p:IsA"ProximityPrompt"then p.Cooldown=0 end end
