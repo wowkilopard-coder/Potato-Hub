@@ -92,10 +92,12 @@ local SpeedSlider = Tab:CreateSlider({
 		-- The function that takes place when the slider changes
 		-- The variable (Value) is a number which correlates to the value the slider is currently at
 		local humanoid = game.Players.LocalPlayer.Character.Humanoid
-		while true do
-			humanoid.WalkSpeed = Value
-			wait(0.2)
-		end
+		task.spawn(function()
+			while true do
+				humanoid.WalkSpeed = Value
+				wait(0.2)
+			end
+		end)
 	end,
 })
 
