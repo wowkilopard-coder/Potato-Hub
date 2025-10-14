@@ -102,19 +102,16 @@ local SpeedSlider = Tab:CreateSlider({
 })
 
 local Tab2 = Window:CreateTab("Base") -- Title, Image
-
 local Toggle = Tab2:CreateToggle({
 	Name = "Auto lock floor 1",
 	CurrentValue = false,
-	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Toggle1",
 	Callback = function(Value)
-		-- The function that takes place when the toggle is pressed
-		-- The variable (Value) is a boolean on whether the toggle is true or false
+		local toggled = false
+		toggled = Value
 		task.spawn(function()
-			while CurrentValue do
-				local args = {
-					1
-				}
+			while toggled do
+				local args = {1}
 				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("LockGate"):InvokeServer(unpack(args))
 				wait(0.2)
 			end
