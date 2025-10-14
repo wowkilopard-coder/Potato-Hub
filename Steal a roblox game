@@ -41,7 +41,7 @@ local Tab = Window:CreateTab("Player") -- Title, Image
 
 local NoClip = Tab:CreateToggle({
 	Name = "No Clip",
-	CurrentValue = false,
+	CurrentValue = true,
 	Flag = "Toggle1",
 	Callback = (function()
 		local Players = game:GetService("Players")
@@ -86,7 +86,7 @@ local SpeedSlider = Tab:CreateSlider({
 	Range = {0, 100},
 	Increment = 1,
 	Suffix = "Speed",
-	CurrentValue = 32,
+	CurrentValue = 50,
 	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
 		-- The function that takes place when the slider changes
@@ -102,9 +102,9 @@ local SpeedSlider = Tab:CreateSlider({
 })
 
 local Tab2 = Window:CreateTab("Base") -- Title, Image
-local Toggle = Tab2:CreateToggle({
-	Name = "Auto lock floor 1",
-	CurrentValue = false,
+local Autolock1 = Tab2:CreateToggle({
+	Name = "Auto Lock Floor 1",
+	CurrentValue = true,
 	Flag = "Toggle1",
 	Callback = function(Value)
 		local toggled = false
@@ -114,6 +114,39 @@ local Toggle = Tab2:CreateToggle({
 				local args = {1}
 				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("LockGate"):InvokeServer(unpack(args))
 				wait(0.2)
+			end
+		end)
+	end,
+})
+
+local AutoCollect = Tab2:CreateToggle({
+	Name = "Auto Collect Money (Floor 1)",
+	CurrentValue = false,
+	Flag = "AutoCollect1",
+	Callback = function(Value)
+		local toggled = false
+		toggled = Value
+		task.spawn(function()
+			local remotes = game:GetService("ReplicatedStorage"):WaitForChild("Remotes")
+			local collect = remotes:WaitForChild("CollectCash")
+			local perArgDelay = 0.1
+			local cycleDelay = 1
+
+			while toggled do
+				local startTime = tick()
+				for i = 1, 10 do
+					if not toggled then break end
+					local args = { tostring(i) }
+					pcall(function()
+						collect:InvokeServer(unpack(args))
+					end)
+					task.wait(perArgDelay)
+				end
+				local elapsed = tick() - startTime
+				local remaining = cycleDelay - elapsed
+				if remaining > 0 then
+					task.wait(remaining)
+				end
 			end
 		end)
 	end,
