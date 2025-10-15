@@ -61,32 +61,42 @@ local GodMode = Tab:CreateButton({
 
 -- Speed Slider
 local SpeedSlider = Tab:CreateSlider({
-	Name = "Walk Speed",
+	Name = "Speed",
 	Range = {0, 500},
-	Increment = 1, 
+	Increment = 1,
 	Suffix = "Speed",
-	CurrentValue = 16, 
-	Flag = "Slider1",
+	CurrentValue = 16,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
-		local player = game.Players.LocalPlayer
-		if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
-			player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = Value
-		end
+		-- The function that takes place when the slider changes
+		-- The variable (Value) is a number which correlates to the value the slider is currently at
+		local humanoid = game.Players.LocalPlayer.Character.Humanoid
+		task.spawn(function()
+			while true do
+				humanoid.WalkSpeed = Value
+				wait(0.2)
+			end
+		end)
 	end,
 })
 
-local JumpSlider = Tab:CreateSlider({
-	Name = "Jump Power",
+local SpeedSlider = Tab:CreateSlider({
+	Name = "JumpPower",
 	Range = {0, 500},
-	Increment = 1, 
-	Suffix = "Power",
-	CurrentValue = 50, 
-	Flag = "Slider1",
+	Increment = 1,
+	Suffix = "JumpPower",
+	CurrentValue = 50,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
-		local player = game.Players.LocalPlayer
-		if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
-			player.Character:FindFirstChildOfClass("Humanoid").JumpPower = Value
-		end
+		-- The function that takes place when the slider changes
+		-- The variable (Value) is a number which correlates to the value the slider is currently at
+		local humanoid = game.Players.LocalPlayer.Character.Humanoid
+		task.spawn(function()
+			while true do
+				humanoid.WalkSpeed = Value
+				wait(0.2)
+			end
+		end)
 	end,
 })
 
@@ -131,6 +141,16 @@ local NoClip = Tab:CreateToggle({
 			end
 		end
 	end)(),
+})
+
+local CameraOut = Tab:CreateButton({
+	Name = "InfZoom",
+	Callback = function()
+		local player = game.Players.LocalPlayer
+		local camera = game.Workspace.CurrentCamera
+		player.CameraMode = Enum.CameraMode.Classic
+		player.CameraMaxZoomDistance = math.huge
+	end,
 })
 
 local Tab2 = Window:CreateTab("Universal Scripts")
