@@ -80,7 +80,7 @@ local SpeedSlider = Tab:CreateSlider({
 	end,
 })
 
-local SpeedSlider = Tab:CreateSlider({
+local JumpPowerSlider = Tab:CreateSlider({
 	Name = "JumpPower",
 	Range = {0, 500},
 	Increment = 1,
@@ -93,7 +93,7 @@ local SpeedSlider = Tab:CreateSlider({
 		local humanoid = game.Players.LocalPlayer.Character.Humanoid
 		task.spawn(function()
 			while true do
-				humanoid.WalkSpeed = Value
+				humanoid.JumpPower = Value
 				wait(0.2)
 			end
 		end)
