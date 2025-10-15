@@ -149,7 +149,7 @@ local CameraOut = Tab:CreateButton({
 		local player = game.Players.LocalPlayer
 		local camera = game.Workspace.CurrentCamera
 		player.CameraMode = Enum.CameraMode.Classic
-		player.CameraMaxZoomDistance = math.huge
+		player.CameraMaxZoomDistance = 999999
 	end,
 })
 
