@@ -150,6 +150,11 @@ local CameraOut = Tab:CreateButton({
 		local camera = game.Workspace.CurrentCamera
 		player.CameraMode = Enum.CameraMode.Classic
 		player.CameraMaxZoomDistance = 999999
+		local UIS = game:GetService("UserInputService")
+
+		UIS.MouseBehavior = Enum.MouseBehavior.Default
+		UIS.MouseIconEnabled = true
+
 	end,
 })
 
