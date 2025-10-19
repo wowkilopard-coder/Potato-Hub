@@ -329,7 +329,7 @@ local XVCHub = Tab4:CreateButton({
 	end,
 })
 
-local Section = Tab4:CreateSection("Section Example")
+local Divider = Tab4:CreateDivider()
 
 local gameSupported = false
 
