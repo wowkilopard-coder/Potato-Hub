@@ -224,19 +224,35 @@ local NoCooldownProx = Tab2:CreateButton({
 })
 
 
-local Tab3 = Window:CreateTab("Teleport")
+local Tab3 = Window:CreateTab("Troll 🤡")
 
-local Dropdown = Tab3:CreateDropdown({
-	Name = "Dropdown Example",
-	Options = {"Option 1","Option 2"},
-	CurrentOption = {"Option 1"},
-	MultipleOptions = false,
-	Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(Options)
-		-- The function that takes place when the selected option is changed
-		-- The variable (Options) is a table of strings for the current selected options
+local ChatBypass = Tab3:CreateButton({
+	Name = "Load Vadrifts chat bypass",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/vqmpjay/Vadrifts/refs/heads/main/VadriftsBypasser.lua"))()
 	end,
 })
+
+local ChatBypassWeeklyKey = Tab3:CreateButton({
+	Name = "Copy chatbypass weekly key",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		local text = "mosttuffestmodisclickjssaying"
+
+		if type(syn) == "table" and syn.set_clipboard then
+			syn.set_clipboard(text)
+		elseif type(setclipboard) == "function" then
+			setclipboard(text)
+		elseif type(write_clipboard) == "function" then
+			write_clipboard(text)
+		else
+			warn("Your executor doesn't support copying")
+		end
+
+	end,
+})
+
 
 local Tab4 = Window:CreateTab("Games 🎮")
 
