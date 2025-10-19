@@ -47,6 +47,12 @@ local FlyButton = Tab:CreateButton({
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
 -- The function that takes place when the button is pressed
+		Rayfield:Notify({
+			Title = "Loaded Successfully",
+			Content = "Fly Script successfully loaded",
+			Duration = 6.5,
+			Image = 0,
+		})
 end,
 })
 
@@ -55,6 +61,12 @@ local GodMode = Tab:CreateButton({
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Rawbr10/Roblox-Scripts/refs/heads/main/God%20Mode%20Script%20Universal"))()
 		-- The function that takes place when the button is pressed
+		Rayfield:Notify({
+			Title = "Loaded Successfully",
+			Content = "GodMode successfully loaded",
+			Duration = 6.5,
+			Image = 0,
+		})
 	end,
 })
 
@@ -165,14 +177,26 @@ local InfiniteYield = Tab2:CreateButton({
 	Callback = function()
 		-- The function that takes place when the button is pressed
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+		Rayfield:Notify({
+			Title = "Loaded Successfully",
+			Content = "Infinite Yield successfully loaded",
+			Duration = 6.5,
+			Image = 0,
+		})
 	end,
 })
 
 local FlingButton = Tab2:CreateButton({
-	Name = "Load Fling GUI",
+	Name = "Load FlingGUI",
 	Callback = function()
 		-- The function that takes place when the button is pressed
 		loadstring((function(t)local s=''for i=1,#t,2 do s=s..string.char(t[i]//t[i+1])end return s end)({216,2,333,3,485,5,700,7,1265,11,1508,13,1938,17,1995,19,2530,23,2987,29,80,2,309,3,485,5,763,7,1111,11,754,13,1224,17,2204,19,2668,23,3248,29,142,2,303,3,580,5,280,7,374,11,1352,13,1972,17,2204,19,2576,23,3335,29,116,2,141,3,235,5,721,7,1188,11,1443,13,1972,17,874,19,2415,23,3219,29,94,2,345,3,550,5,735,7,1232,11,1456,13,1717,17,2204,19,2645,23,1363,29,208,2,168,3,270,5,721,7,1210,11,1495,13,1700,17,1957,19,2691,23,2900,29,94,2,342,3,485,5,833,7,517,11,910,13,1836,17,1995,19,2530,23,2987,29,142,2,351,3,525,5,322,7,1188,11,1521,13,1649,17,646,19,943,23,1189,29,80,2,123,3}))()
+		Rayfield:Notify({
+			Title = "Loaded Successfully",
+			Content = "FlingGUI successfully loaded",
+			Duration = 6.5,
+			Image = 0,
+		})
 	end,
 })
 
@@ -181,6 +205,12 @@ local RemoteGUI = Tab2:CreateButton({
 	Callback = function()
 		-- The function that takes place when the button is pressed
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/wowkilopard-coder/Potato-Hub-3.0/refs/heads/main/RemoteGUI'))()
+		Rayfield:Notify({
+			Title = "Loaded Successfully",
+			Content = "RemoteGUI successfully loaded",
+			Duration = 6.5,
+			Image = 0,
+		})
 	end,
 })
 
@@ -189,6 +219,12 @@ local UniversalAimbot = Tab2:CreateButton({
 	Callback = function()
 		-- The function that takes place when the button is pressed
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/wowkilopard-coder/Potato-Hub-3.0/refs/heads/main/Universal%20Aimbot'))()
+		Rayfield:Notify({
+			Title = "Loaded Successfully",
+			Content = "Universal Aimbot successfully loaded",
+			Duration = 6.5,
+			Image = 0,
+		})
 	end,
 })
 
@@ -231,6 +267,12 @@ local ChatBypass = Tab3:CreateButton({
 	Callback = function()
 		-- The function that takes place when the button is pressed
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/vqmpjay/Vadrifts/refs/heads/main/VadriftsBypasser.lua"))()
+		Rayfield:Notify({
+			Title = "Loaded Successfully",
+			Content = "Chatbypass successfully loaded",
+			Duration = 6.5,
+			Image = 0,
+		})
 	end,
 })
 
@@ -242,12 +284,35 @@ local ChatBypassWeeklyKey = Tab3:CreateButton({
 
 		if type(syn) == "table" and syn.set_clipboard then
 			syn.set_clipboard(text)
+			Rayfield:Notify({
+				Title = "Successfully copied",
+				Content = "Chatbypass key is copied to your clipboard",
+				Duration = 6.5,
+				Image = 0,
+			})
 		elseif type(setclipboard) == "function" then
 			setclipboard(text)
+			Rayfield:Notify({
+				Title = "Successfully copied",
+				Content = "Chatbypass key is copied to your clipboard",
+				Duration = 6.5,
+				Image = 0,
+			})
 		elseif type(write_clipboard) == "function" then
 			write_clipboard(text)
+			Rayfield:Notify({
+				Title = "Successfully copied",
+				Content = "Chatbypass key is copied to your clipboard",
+				Duration = 6.5,
+				Image = 0,
+			})
 		else
-			warn("Your executor doesn't support copying")
+			Rayfield:Notify({
+				Title = "Failed to copy",
+				Content = "Your executor doesn't support setclipboard/syn.set_clipboard funktion",
+				Duration = 6.5,
+				Image = 0,
+			})
 		end
 
 	end,
@@ -272,6 +337,12 @@ local PsGUI = Tab5:CreateButton({
 	Callback = function()
 		-- The function that takes place when the button is pressed
 		loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FREE-PRIVATE-SERVER-GUI-ANY-GAME-55939"))()
+		Rayfield:Notify({
+			Title = "Loaded Successfully",
+			Content = "Free PrivateServerGUI successfully loaded",
+			Duration = 6.5,
+			Image = 0,
+		})
 	end,
 })
 
@@ -287,6 +358,12 @@ local RejoinButton = Tab5:CreateButton({
 		local jobId = game.JobId  -- nykyisen serverin ID
 
 		TeleportService:TeleportToPlaceInstance(placeId, jobId, player)
+		Rayfield:Notify({
+			Title = "Rejoining...",
+			Content = "You are currently rejoining this server",
+			Duration = 6.5,
+			Image = 0,
+		})
 
 	end,
 })
@@ -340,5 +417,11 @@ local ServerHopButton = Tab5:CreateButton({
 		end
 		
 		serverHop()
+		Rayfield:Notify({
+			Title = "Teleporting...",
+			Content = "You are currently teleporting to random server",
+			Duration = 6.5,
+			Image = 0,
+		})
 	end,
 })
