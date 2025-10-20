@@ -172,7 +172,6 @@ local CameraOut = Tab:CreateButton({
 
 local Tab2 = Window:CreateTab("Universal Scripts")
 
-local DividerTab2 = Tab2:CreateDivider()
 
 local InfiniteYield = Tab2:CreateButton({
 	Name = "Load Infinite Yield",
@@ -188,7 +187,6 @@ local InfiniteYield = Tab2:CreateButton({
 	end,
 })
 
-local DividerTab2 = Tab2:CreateDivider()
 local FlingButton = Tab2:CreateButton({
 	Name = "Load FlingGUI",
 	Callback = function()
@@ -203,7 +201,6 @@ local FlingButton = Tab2:CreateButton({
 	end,
 })
 
-local DividerTab2 = Tab2:CreateDivider()
 local RemoteGUI = Tab2:CreateButton({
 	Name = "Load RemoteGUI",
 	Callback = function()
@@ -218,7 +215,6 @@ local RemoteGUI = Tab2:CreateButton({
 	end,
 })
 
-local DividerTab2 = Tab2:CreateDivider()
 local UniversalAimbot = Tab2:CreateButton({
 	Name = "Load Universal Aimbot (Only to players)",
 	Callback = function()
@@ -322,25 +318,9 @@ local ChatBypassWeeklyKey = Tab3:CreateButton({
 				Image = 0,
 			})
 		end
-
 	end,
 })
 
-local Sus = Tab4:CreateSection("🔞")
-
-local BangBang = Tab:CreateButton({
-	Name = "Load BangGUI 😏",
-	Callback = function()
-		-- The function that takes place when the button is pressed
-		loadstring(game:HttpGet("https://pastebin.com/raw/SvVYqTh6"))()
-		Rayfield:Notify({
-			Title = "Loaded Successfully",
-			Content = "BangGUI successfully loaded",
-			Duration = 6.5,
-			Image = 0,
-		})
-	end,
-})
 
 local Tab4 = Window:CreateTab("Games 🎮")
 
