@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = " 3.01"
+local CurrentVersion = " 3.02"
 print("Potato Hub" .. CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -322,6 +322,8 @@ local ChatBypassWeeklyKey = Tab3:CreateButton({
 		end
 	end,
 })
+
+local Weird3 = Tab3:CreateSection("Weirdo Section")
 
 local Bang = Tab3:CreateButton({
 	Name = "Load BangGUI",
