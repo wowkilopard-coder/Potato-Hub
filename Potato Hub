@@ -41,7 +41,6 @@ local Window = Rayfield:CreateWindow({
 
 local Tab = Window:CreateTab("Player")
 
-local Divider = Tab:CreateDivider()
 -- Fly Loader Button
 local FlyButton = Tab:CreateButton({
 	Name = "Load Fly Script",
@@ -341,20 +340,6 @@ local XVCHub = Tab4:CreateButton({
 
 local GamesSection = Tab:CreateSection("Game")
 
-local gameSupported = false
-
-if game.PlaceId == 128475044784063 or 127239803293427 then -- Happy Ghost
-	gameSupported = true
-	local HappyGhost = Tab4:CreateButton({
-		Name = "Happy Ghost -- By potato devs",
-		Callback = function()
-			-- The function that takes place when the button is pressed
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/wowkilopard-coder/Potato-Hub/refs/heads/main/Happy%20Ghost%20Script"))()
-		end,
-	})
-else 
-	return end
-end
 
 if gameSupported == false then
 	local NotSupported = Tab4:CreateButton({
