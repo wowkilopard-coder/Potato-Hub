@@ -1,9 +1,11 @@
 -- Potato Hub
+local CurrentVersion = "3.0"
+print("Potato Hub" .. CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "Potato Hub",
+	Name = "Potato Hub" .. CurrentVersion,
 	Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
 	LoadingTitle = "Loading Potato Scripts",
 	LoadingSubtitle = "By Potato Devs",
@@ -321,7 +323,6 @@ local ChatBypassWeeklyKey = Tab3:CreateButton({
 	end,
 })
 
-local WeirdoZone = Tab4:CreateSection("Weird Actions")
 
 local Bang = Tab4:CreateButton({
 	Name = "Load BangGUI",
