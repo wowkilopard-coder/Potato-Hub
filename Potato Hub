@@ -326,6 +326,21 @@ local ChatBypassWeeklyKey = Tab3:CreateButton({
 	end,
 })
 
+local Sus = Tab4:CreateSection("🔞")
+
+local BangBang = Tab:CreateButton({
+	Name = "Load BangGUI 😏",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		loadstring(game:HttpGet("https://pastebin.com/raw/SvVYqTh6"))()
+		Rayfield:Notify({
+			Title = "Loaded Successfully",
+			Content = "BangGUI successfully loaded",
+			Duration = 6.5,
+			Image = 0,
+		})
+	end,
+})
 
 local Tab4 = Window:CreateTab("Games 🎮")
 
