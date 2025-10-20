@@ -321,7 +321,7 @@ local ChatBypassWeeklyKey = Tab3:CreateButton({
 	end,
 })
 
-local Sussy = Tab4:CreateSection("🔞 Danger Zone")
+local Sussy = Tab4:CreateSection("18+ Danger Zone")
 
 local Bang = Tab4:CreateButton({
 	Name = "Load BangGUI",
