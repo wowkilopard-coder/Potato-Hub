@@ -333,8 +333,8 @@ local XVCHub = Tab4:CreateButton({
 	end,
 })
 
-local GamesSection = Tab:CreateSection("Game")
-
+local GamesSection = Tab4:CreateSection("Scripts for Current Game")
+local gameSupported = false
 
 if gameSupported == false then
 	local NotSupported = Tab4:CreateButton({
