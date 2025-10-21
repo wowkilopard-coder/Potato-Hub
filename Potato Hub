@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = " 3.04"
+local CurrentVersion = " 3.05"
 print("Potato Hub" .. CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -358,8 +358,6 @@ if game.PlaceId == 4924922222 then
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/Brookhaven"))()
 		end,
 	})
-else 
-	print("Not Brookhaven")
 end
 
 if gameSupported == false then
