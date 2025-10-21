@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = " 3.02"
+local CurrentVersion = " 3.03"
 print("Potato Hub" .. CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
