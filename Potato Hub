@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.10"
+local CurrentVersion = "Potato Hub -- Version 3.11"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -363,7 +363,7 @@ if game.PlaceId == 4924922222 then
 	})
 end
 
-if game.PlaceId == 128475044784063 or 127239803293427 then
+if game.PlaceId == 128475044784063 or game.PlaceId == 127239803293427 then
 	gameSupported = true
 	local Button = Tab4:CreateButton({
 		Name = "Happy Ghost -- Potato Hub",
