@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = " 3.03"
+local CurrentVersion = " 3.04"
 print("Potato Hub" .. CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -353,7 +353,7 @@ if game.PlaceId == 4924922222 then
 		Name = "Button Example",
 		Callback = function()
 			-- The function that takes place when the button is pressed
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/Brookhaven"))(
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/Brookhaven"))()
 		end,
 	})
 else 
