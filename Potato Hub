@@ -347,6 +347,19 @@ local XVCHub = Tab4:CreateButton({
 local GamesSection = Tab4:CreateSection("Current Game")
 local gameSupported = false
 
+if game.PlaceId == 4924922222 then
+	gameSupported = true
+	local Button = Tab:CreateButton({
+		Name = "Button Example",
+		Callback = function()
+			-- The function that takes place when the button is pressed
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/Brookhaven"))(
+		end,
+	})
+else 
+	print("Not Brookhaven")
+end
+
 if gameSupported == false then
 	local NotSupported = Tab4:CreateButton({
 		Name = "This game isn't supported",
