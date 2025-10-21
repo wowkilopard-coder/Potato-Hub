@@ -1,14 +1,14 @@
 -- Potato Hub
-local CurrentVersion = " 3.06"
+local CurrentVersion = " 3.07"
 print("Potato Hub" .. CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
-	Name = "Potato Hub",
+	Name = CurrentVersion,
 	Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
 	LoadingTitle = "Loading Potato Scripts",
 	LoadingSubtitle = "By Potato Devs",
-	ShowText = "Potato Hub", -- for mobile users to unhide rayfield, change if you'd like
+	ShowText = CurrentVersion, -- for mobile users to unhide rayfield, change if you'd like
 	Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
 	ToggleUIKeybind = "M", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
