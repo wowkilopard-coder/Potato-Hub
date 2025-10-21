@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.08"
+local CurrentVersion = "Potato Hub -- Version 3.09"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -376,6 +376,8 @@ if gameSupported == false then
 		end,
 	})
 end
+
+local Paragraph = Tab4:CreateParagraph({Title = "Supported Games", Content = "Happy Ghost, Brookhaven"})
 
 local Tab5 = Window:CreateTab("Server")
 
