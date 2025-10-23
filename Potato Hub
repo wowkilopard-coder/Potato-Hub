@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.12"
+local CurrentVersion = "Potato Hub -- Version 3.13"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -154,6 +154,18 @@ local NoClip = Tab:CreateToggle({
 			end
 		end
 	end)(),
+})
+
+local RootPartAnchor = Tab:CreateToggle({
+	Name = "Anchor HumanoidRootPart",
+	CurrentValue = false,
+	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		-- The function that takes place when the toggle is pressed
+		-- The variable (Value) is a boolean on whether the toggle is true or false
+		local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+		hrp.Anchored = Value
+	end,
 })
 
 local CameraOut = Tab:CreateButton({
@@ -377,7 +389,7 @@ if gameSupported == false then
 	})
 end
 
-local SupportedGames = Tab4:CreateSection("Supported Games")
+local SupportedGames = Tab4:CreateSection("Supported Games:")
 
 local Paragraph = Tab4:CreateParagraph({
 	Title = "Supported Games",
