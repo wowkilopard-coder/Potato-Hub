@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.13"
+local CurrentVersion = "Potato Hub -- Version 3.14"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -174,7 +174,7 @@ local CameraOut = Tab:CreateButton({
 		local player = game.Players.LocalPlayer
 		local camera = game.Workspace.CurrentCamera
 		player.CameraMode = Enum.CameraMode.Classic
-		player.CameraMaxZoomDistance = 999999
+		player.CameraMaxZoomDistance = math.huge
 		local UIS = game:GetService("UserInputService")
 
 		UIS.MouseBehavior = Enum.MouseBehavior.Default
@@ -369,6 +369,17 @@ if game.PlaceId == 4924922222 then
 	})
 end
 
+if game.PlaceId == 537413528 then
+	gameSupported = true
+	local Button = Tab4:CreateButton({
+		Name = "Build A Boat (Needs key, but it's worth of it)",
+		Callback = function()
+			-- The function that takes place when the button is pressed
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/TheRealAsu/BABFT/refs/heads/main/Loader.lua'))()
+		end,
+	})
+end
+
 if game.PlaceId == 128475044784063 or game.PlaceId == 127239803293427 then
 	gameSupported = true
 	local Button = Tab4:CreateButton({
@@ -393,13 +404,13 @@ local SupportedGames = Tab4:CreateSection("Supported Games:")
 
 local Paragraph = Tab4:CreateParagraph({
 	Title = "Supported Games",
-	Content = "Brookhaven\nHappy Ghost"
+	Content = "Brookhaven\nBuild A Boat For Treasure\nHappy Ghost"
 })
 
 local Tab5 = Window:CreateTab("Server")
 
 local PsGUI = Tab5:CreateButton({
-	Name = "Load Free Private Server GUI",
+	Name = "Load Free Private Server GUI (Patched)",
 	Callback = function()
 		-- The function that takes place when the button is pressed
 		loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FREE-PRIVATE-SERVER-GUI-ANY-GAME-55939"))()
