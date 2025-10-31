@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.14"
+local CurrentVersion = "Potato Hub -- Version 3.15"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -369,6 +369,17 @@ if game.PlaceId == 4924922222 then
 	})
 end
 
+if game.PlaceId == 2753915549 then
+	gameSupported = true
+	local Button = Tab4:CreateButton({
+		Name = "Blox Fruits (Needs key, but it's worth of it)",
+		Callback = function()
+			-- The function that takes place when the button is pressed
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ThunderZ-05/HUB/main/TestKey')))()
+		end,
+	})
+end
+
 if game.PlaceId == 537413528 then
 	gameSupported = true
 	local Button = Tab4:CreateButton({
@@ -404,7 +415,7 @@ local SupportedGames = Tab4:CreateSection("Supported Games:")
 
 local Paragraph = Tab4:CreateParagraph({
 	Title = "Supported Games",
-	Content = "Brookhaven\nBuild A Boat For Treasure\nHappy Ghost"
+	Content = "Brookhaven\nBlox Fruits\nBuild A Boat For Treasure\nHappy Ghost"
 })
 
 local Tab5 = Window:CreateTab("Server")
