@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.15"
+local CurrentVersion = "Potato Hub -- Version 3.16"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -369,13 +369,29 @@ if game.PlaceId == 4924922222 then
 	})
 end
 
-if game.PlaceId == 2753915549 then
+if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
 	gameSupported = true
 	local Button = Tab4:CreateButton({
-		Name = "Blox Fruits (Needs key, but it's worth of it)",
+		Name = "Blox Fruits -- Thunder Z ⚡🔑 (Needs key | Awesome GUI)",
 		Callback = function()
 			-- The function that takes place when the button is pressed
 			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ThunderZ-05/HUB/main/TestKey')))()
+		end,
+	})
+	
+	local Button = Tab4:CreateButton({
+		Name = "Blox Fruits -- SolixHub 🔑 (Needs key | More features like aimbot)",
+		Callback = function()
+			-- The function that takes place when the button is pressed
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/Solixreworkkeysystem/refs/heads/main/solix%20new%20keyui.lua"))()
+		end,
+	})
+	
+	local Button = Tab4:CreateButton({
+		Name = "Blox Fruits -- SpeedHub X (Keyless, but autofarm detected and auto raids doesn't work)",
+		Callback = function()
+			-- The function that takes place when the button is pressed
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
 		end,
 	})
 end
