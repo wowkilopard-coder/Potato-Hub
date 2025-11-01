@@ -358,6 +358,7 @@ local XVCHub = Tab4:CreateButton({
 local GamesSection = Tab4:CreateSection("Current Game")
 local gameSupported = false
 
+-- Brookhaven
 if game.PlaceId == 4924922222 then
 	gameSupported = true
 	local Button = Tab4:CreateButton({
@@ -369,6 +370,7 @@ if game.PlaceId == 4924922222 then
 	})
 end
 
+-- Blox Fruits
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
 	gameSupported = true
 	local Button = Tab4:CreateButton({
@@ -396,6 +398,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 	})
 end
 
+-- Babft
 if game.PlaceId == 537413528 then
 	gameSupported = true
 	local Button = Tab4:CreateButton({
@@ -407,6 +410,7 @@ if game.PlaceId == 537413528 then
 	})
 end
 
+-- Happy Ghosts
 if game.PlaceId == 128475044784063 or game.PlaceId == 127239803293427 then
 	gameSupported = true
 	local Button = Tab4:CreateButton({
@@ -414,6 +418,18 @@ if game.PlaceId == 128475044784063 or game.PlaceId == 127239803293427 then
 		Callback = function()
 			-- The function that takes place when the button is pressed
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/wowkilopard-coder/Potato-Hub/refs/heads/main/Happy%20Ghost%20Script"))()
+		end,
+	})
+end
+
+-- Hunted
+if game.PlaceId == 136431686349723 or game.PlaceId == 102181577519757 or game.PlaceId == 125591428878906 then
+	gameSupported = true
+	local Button = Tab4:CreateButton({
+		Name = "Hunted -- NullHex",
+		Callback = function()
+			-- The function that takes place when the button is pressed
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/radmnb2009-dot/Hunted-/refs/heads/main/Pssss"))()
 		end,
 	})
 end
