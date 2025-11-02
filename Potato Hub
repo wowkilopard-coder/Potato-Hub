@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.18"
+local CurrentVersion = "Potato Hub -- Version 3.19"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -411,7 +411,7 @@ if game.PlaceId == 537413528 then
 end
 
 -- Dandy's World
-if game.PlaceId == 128475044784063 or game.PlaceId == 127239803293427 then
+if game.PlaceId == 16116270224 or game.PlaceId == 16552821455 then
 	gameSupported = true
 	local Button = Tab4:CreateButton({
 		Name = "Dandy's World -- Riddance 🔑 (Needs key, but it's worth of it)",
