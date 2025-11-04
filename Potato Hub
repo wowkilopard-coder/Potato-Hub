@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.25"
+local CurrentVersion = "Potato Hub -- Version 3.26"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -287,6 +287,17 @@ local NoCooldownProx = Tab2:CreateButton({
 	end,
 })
 
+local DividerTab2 = Tab2:CreateDivider()
+
+local AutoPiano = Tab2:CreateButton({
+	Name = "Load Auto Piano -- Talentless",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		pcall(function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/hellohellohell012321/TALENTLESS/main/TALENTLESS", true))()
+		end)
+	end,
+})
 
 local Tab3 = Window:CreateTab("Troll 🤡")
 
@@ -354,6 +365,22 @@ local Bang = Tab3:CreateButton({
 	Callback = function()
 		-- The function that takes place when the button is pressed
 		loadstring(game:HttpGet("https://pastebin.com/raw/SvVYqTh6"))()
+	end,
+})
+
+local JerkOffR6 = Tab3:CreateButton({
+	Name = "R6 Gooning tool",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+	end,
+})
+
+local JerkOffR15 = Tab3:CreateButton({
+	Name = "R15 Gooning tool",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+		loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
 	end,
 })
 
