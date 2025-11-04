@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.22"
+local CurrentVersion = "Potato Hub -- Version 3.21"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -72,7 +72,7 @@ local GodMode = Tab:CreateButton({
 })
 
 
-local CurrentSpeed = nil
+local CurrentSpeed = 16
 local SpeedLoopRunning = false
 local SpeedSlider = Tab:CreateSlider({
 	Name = "Speed",
