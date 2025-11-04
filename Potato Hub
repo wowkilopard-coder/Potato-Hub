@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.23"
+local CurrentVersion = "Potato Hub -- Version 3.24"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -72,7 +72,7 @@ local GodMode = Tab:CreateButton({
 })
 
 
-local CurrentSpeed = 16
+local CurrentSpeed = 100
 local SpeedLoopRunning = false
 local SpeedSlider = Tab:CreateSlider({
 	Name = "Speed",
@@ -99,28 +99,31 @@ local SpeedSlider = Tab:CreateSlider({
 })
 
 
-local JumpPowerSlider = Tab:CreateSlider({
-	Name = "JumpPower",
+local CurrentJump = 50
+local SpeedLoopRunning = false
+local SpeedSlider = Tab:CreateSlider({
+	Name = "Speed",
 	Range = {0, 500},
 	Increment = 1,
-	Suffix = "JumpPower",
-	CurrentValue = 50,
-	Flag = "Slider1", 
+	Suffix = "Speed",
+	CurrentValue = CurrentJump,
+	Flag = "Slider1",
 	Callback = function(Value)
-		JumpPower = Value
+		CurrentJump = Value
+		if not SpeedLoopRunning then
+			SpeedLoopRunning = true
+			task.spawn(function()
+				while SpeedLoopRunning do
+					local player = game.Players.LocalPlayer
+					if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+						player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = CurrentJump
+					end
+					task.wait(0.2)
+				end
+			end)
+		end
 	end,
 })
-
--- Yksi jatkuva looppi joka päivittää hyppykorkeuden
-task.spawn(function()
-	while true do
-		local player = game.Players.LocalPlayer
-		if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
-			player.Character:FindFirstChildOfClass("Humanoid").JumpPower = JumpPower
-		end
-		task.wait(0.2)
-	end
-end)
 
 
 -- No Clip
