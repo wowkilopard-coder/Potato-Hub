@@ -1,5 +1,5 @@
 -- Potato Hub
-local CurrentVersion = "Potato Hub -- Version 3.19"
+local CurrentVersion = "Potato Hub -- Version 3.20"
 print(CurrentVersion)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -72,26 +72,27 @@ local GodMode = Tab:CreateButton({
 })
 
 
--- Speed Slider
 local SpeedSlider = Tab:CreateSlider({
 	Name = "Speed",
 	Range = {0, 500},
 	Increment = 1,
 	Suffix = "Speed",
 	CurrentValue = 16,
-	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Slider1",
 	Callback = function(Value)
-		-- The function that takes place when the slider changes
-		-- The variable (Value) is a number which correlates to the value the slider is currently at
-		local humanoid = game.Players.LocalPlayer.Character.Humanoid
-		task.spawn(function()
-			while true do
-				humanoid.WalkSpeed = Value
-				wait(0.2)
-			end
-		end)
+		CurrentSpeed = Value 
 	end,
 })
+
+task.spawn(function()
+	while true do
+		local player = game.Players.LocalPlayer
+		if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+			player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = CurrentSpeed or 16
+		end
+		task.wait(0.2)
+	end
+end)
 
 local JumpPowerSlider = Tab:CreateSlider({
 	Name = "JumpPower",
@@ -99,19 +100,23 @@ local JumpPowerSlider = Tab:CreateSlider({
 	Increment = 1,
 	Suffix = "JumpPower",
 	CurrentValue = 50,
-	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Slider1", 
 	Callback = function(Value)
-		-- The function that takes place when the slider changes
-		-- The variable (Value) is a number which correlates to the value the slider is currently at
-		local humanoid = game.Players.LocalPlayer.Character.Humanoid
-		task.spawn(function()
-			while true do
-				humanoid.JumpPower = Value
-				wait(0.2)
-			end
-		end)
+		JumpPower = Value
 	end,
 })
+
+-- Yksi jatkuva looppi joka päivittää hyppykorkeuden
+task.spawn(function()
+	while true do
+		local player = game.Players.LocalPlayer
+		if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+			player.Character:FindFirstChildOfClass("Humanoid").JumpPower = JumpPower
+		end
+		task.wait(0.2)
+	end
+end)
+
 
 -- No Clip
 local NoClip = Tab:CreateToggle({
