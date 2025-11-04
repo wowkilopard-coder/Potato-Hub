@@ -72,7 +72,7 @@ local GodMode = Tab:CreateButton({
 })
 
 
-local CurrentSpeed = 100
+local CurrentSpeed = 16
 local SpeedLoopRunning = false
 local SpeedSlider = Tab:CreateSlider({
 	Name = "Speed",
